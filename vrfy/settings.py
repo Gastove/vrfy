@@ -24,13 +24,12 @@ INTERNAL_IPS = ['127.0.0.1','localhost']
 GRAPPELLI_ADMIN_TITLE = "CS@Reed Admin"
 GRAPPELLI_INDEX_DASHBOARD = "vrfy.dashboard.CustomIndexDashboard"
 
-# Application definition
-
 INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'grappelli.dashboard',
     'grappelli',
-    'django.contrib.admin',
+    'adminplus',
+    'django.contrib.admin.apps.SimpleAdminConfig',
     'django.contrib.auth',
     'django.contrib.sessions',
     'django.contrib.messages',

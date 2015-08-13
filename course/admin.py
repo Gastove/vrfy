@@ -18,6 +18,11 @@ from util import tango
 admin.site.site_header = "Homework Administration"
 admin.site.site_title = "Homework Administration"
 
+@admin.site.register_view('tables/')
+def my_view(request):
+  print('you\'re here')
+  pass
+
 #Inlines
 class RequiredProblemFilenameInline(admin.TabularInline):
   model = models.RequiredProblemFilename
@@ -57,7 +62,7 @@ class StudentProblemFileInline(admin.TabularInline):
 #   model = models.ProblemResult
 #   extra = 0
 
-@admin.register(models.Problem)
+@admin.register(models.Problem, site=admin.site)
 class ProblemAdmin(admin.ModelAdmin):
   class Meta:
     model = models.Problem
@@ -108,7 +113,7 @@ class ProblemAdmin(admin.ModelAdmin):
     
     return super(ProblemAdmin, self).response_change(request, obj)
 
-@admin.register(models.ProblemSet)
+@admin.register(models.ProblemSet, site=admin.site)
 class ProblemSetAdmin(admin.ModelAdmin):
   fieldsets = [
     ('Problem Set Info', {'fields': ['title', 'description']}),
@@ -180,7 +185,7 @@ class ProblemSetAdmin(admin.ModelAdmin):
         f = psfile.file_upload
         tango.upload(problem, obj, f.name.split("/")[-1], f.read())
 
-@admin.register(models.StudentProblemSet)
+@admin.register(models.StudentProblemSet, site=admin.site)
 class StudentProblemSetAdmin(admin.ModelAdmin):
   readonly_fields = ('problem_set', 'user', 'submitted')
   inlines = [StudentProblemSolutionInline]
@@ -194,7 +199,7 @@ class StudentProblemSetAdmin(admin.ModelAdmin):
     return obj.problem_set.due_date
 
 
-@admin.register(models.StudentProblemSolution)
+@admin.register(models.StudentProblemSolution, site=admin.site)
 class StudentProblemSolutionAdmin(admin.ModelAdmin):
   actions = ['export_csv']
   class Media:
@@ -248,7 +253,7 @@ class StudentProblemSolutionAdmin(admin.ModelAdmin):
     else:
       return 'No'
 
-@admin.register(models.GraderLib)
+@admin.register(models.GraderLib, site=admin.site)
 class GraderLibAdmin(admin.ModelAdmin):
   #readonly_fields=('lib_upload',)
   fields = ('lib_upload', 'comment')

@@ -16,6 +16,12 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from vrfy import settings
+from adminplus.sites import AdminSitePlus
+
+admin.site = AdminSitePlus()
+print("...")
+print(admin.site)
+admin.autodiscover()
 
 urlpatterns = [
     url(r'^', include('course.urls', namespace="course")),

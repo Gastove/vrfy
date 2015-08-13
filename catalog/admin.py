@@ -3,7 +3,6 @@ from catalog.models import Reedie, Course, Section
 from django.contrib.auth.models import User
 # Register your models here.
 from django.contrib.auth.admin import UserAdmin
-admin.site.unregister(User)
 
 class ReedieInline(admin.StackedInline):
   model = Reedie
@@ -14,7 +13,7 @@ class ReedieInline(admin.StackedInline):
 #   extra = 1
 #   verbose_name_plural = "Enrolled"
 
-@admin.register(Reedie)
+@admin.register(Reedie, site=admin.site)
 class ReedieAdmin(admin.ModelAdmin):
   readonly_fields = ('first_name', 'last_name', 'email', 'last_updated')
   fieldsets = [
@@ -22,11 +21,12 @@ class ReedieAdmin(admin.ModelAdmin):
   ]
   # inlines = (EnrollmentInline,)
 
-@admin.register(User)
-class UserAdmin(UserAdmin):
-  inlines = (ReedieInline, )
+# admin.site.unregister(User)
+# @admin.register(User)
+# class UserAdmin(UserAdmin):
+#   inlines = (ReedieInline, )
 
-@admin.register(Course)
+@admin.register(Course, site=admin.site)
 class CourseAdmin(admin.ModelAdmin):
   list_display = ('title', 'sections')
 
@@ -37,7 +37,7 @@ class CourseAdmin(admin.ModelAdmin):
     else:
       return ", ".join([str(section) for section in obj.section_set.all()]) 
 
-@admin.register(Section)
+@admin.register(Section, site=admin.site)
 class SectionAdmin(admin.ModelAdmin):
   fieldsets = [
     ('Course Info', {'fields': ['course', 'section_id', 'prof', 'start_date', 'end_date']}),
@@ -45,3 +45,4 @@ class SectionAdmin(admin.ModelAdmin):
   ]
   # inlines = (EnrollmentInline,)
   filter_vertical = ['enrolled']
+# admin.site.register(Section, SectionAdmin)
