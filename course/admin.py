@@ -19,7 +19,7 @@ admin.site.site_header = "Homework Administration"
 admin.site.site_title = "Homework Administration"
 
 @admin.site.register_view('tables/')
-def my_view(request):
+def tables(request):
   print('you\'re here')
   pass
 

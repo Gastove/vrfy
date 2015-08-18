@@ -43,12 +43,8 @@ class Section(models.Model):
   section_id = models.CharField(max_length=20)
   start_date = models.DateTimeField('course start date')
   end_date = models.DateTimeField('course end date')
-  # enrolled = models.ManyToManyField(Reedie, through='Enrollment')
   enrolled = models.ManyToManyField(Reedie, related_name='enrolled')
-  # enrolled = models.ManyToManyField('generic.CSUser', related_name='enrolled', blank=True)
-  # prof = models.ForeignKey('generic.CSUser', null=True, blank=True)
   prof = models.ForeignKey(User, null=True, blank=True)
-  #one more model to TAs?
-
+  
   def __str__(self):
     return self.course.title + ": " + self.section_id

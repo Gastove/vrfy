@@ -19,8 +19,6 @@ from vrfy import settings
 from adminplus.sites import AdminSitePlus
 
 admin.site = AdminSitePlus()
-print("...")
-print(admin.site)
 admin.autodiscover()
 
 urlpatterns = [

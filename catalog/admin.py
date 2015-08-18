@@ -19,7 +19,6 @@ class ReedieAdmin(admin.ModelAdmin):
   fieldsets = [
     ('Reed Profile Info', {'fields': ['user', 'first_name', 'last_name', 'last_updated', 'email', 'role']}),
   ]
-  # inlines = (EnrollmentInline,)
 
 # admin.site.unregister(User)
 # @admin.register(User)
@@ -43,6 +42,4 @@ class SectionAdmin(admin.ModelAdmin):
     ('Course Info', {'fields': ['course', 'section_id', 'prof', 'start_date', 'end_date']}),
     ('Enrolled Students', {'fields': ['enrolled']}),
   ]
-  # inlines = (EnrollmentInline,)
   filter_vertical = ['enrolled']
-# admin.site.register(Section, SectionAdmin)
