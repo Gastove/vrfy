@@ -200,3 +200,4 @@ Traceback (most recent call last):
 django.template.base.TemplateSyntaxError: Invalid block tag: 'static', expected 'endblock'
 [18/Aug/2015 16:24:42] WARNING [django.request:170] Not Found: /favicon.ico
 [19/Aug/2015 16:22:36] WARNING [django.request:170] Not Found: /favicon.ico
+[19/Aug/2015 22:19:49] WARNING [django.request:170] Not Found: /results/problem-set3/problem2/

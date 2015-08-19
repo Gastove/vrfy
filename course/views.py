@@ -46,7 +46,7 @@ def index(request):
       ps_rs_dict[ps] = None
 
   #student problems submitted in the last 24hrs
-  recent_solutions = StudentProblemSolution.objects.filter(submitted__gte=(timezone.now()-datetime.timedelta(days=1)))
+  recent_solutions = StudentProblemSolution.objects.filter(student_problem_set__user=request.user.reedie, submitted__gte=(timezone.now()-datetime.timedelta(days=1)))
   context = {'upcoming_sets_results_dict': ps_rs_dict, 'recently_submitted_solutions': recent_solutions}
   return render(request, 'course/index.html', context)
 
