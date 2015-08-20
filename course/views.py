@@ -35,7 +35,7 @@ def _query_problem_sets(reedie):#if you want a queryset
 @login_required
 def index(request):
   #problems due in the next week
-  ps_set = _query_problem_sets(request.user.reedie).filter(due_date__range=(timezone.now(), (timezone.now()+datetime.timedelta(days=7)))).order_by('due_date')
+  ps_set = _query_problem_sets(request.user.reedie).filter(due_date__range=((timezone.now()-datetime.timedelta(days=7)), (timezone.now()+datetime.timedelta(days=7)))).order_by('due_date')
   # ps_set = []
   ps_rs_dict = {}
   for ps in ps_set:

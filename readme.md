@@ -45,6 +45,14 @@ to do: give adam and jim and eric a detailed desription of what needs to be in d
 
   * (Add `/admin` to see the admin interface (which is all there really is to see right now, since the authentication is hardcoded in for this development environment) if you add some problems & problem sets and go back to the home page you'll be able to see the problem sets and problems on the main page)
 
+### Special Ubuntu instructions
+  * When installing postgres, install PostgreSQL 9.4 using the [GUI installer](http://www.enterprisedb.com/products/pgdownload.do)
+  * then create/modify the .bashrc (either for postgres user, `/var/lib/postgresql/.bashrc` or for all users `/etc/bash.bashrc`)
+  * edit the PATH variable and add the bin folder in you postgres installation (default add `export PATH=/opt/PostgreSQL/9.4/bin:$PATH` to the .bashrc)
+  * to start, log in to your postgres user (`sudo su - postgres`) and run `pg_ctl start -D /opt/PostgreSQL/9.4/data` (unless you specified a different data folder in the installer)
+    * If it has any problems starting up, try running ``sudo kill -9 `ps -el | grep postgres | awk '{print $4}```
+  
+
 ### If there are migrations to make:
   * `python3 manage.py makemigrations <app_name>`
   * `python3 manage.py migrate`
