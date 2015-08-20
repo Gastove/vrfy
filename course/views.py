@@ -36,12 +36,15 @@ def _query_problem_sets(reedie):#if you want a queryset
 def index(request):
   #problems due in the next week
   ps_set = _query_problem_sets(request.user.reedie).filter(due_date__range=((timezone.now()-datetime.timedelta(days=7)), (timezone.now()+datetime.timedelta(days=7)))).order_by('due_date')
+  #TODO exclude problem sets where the user's student problem set does not exist or does not have everything submitted
   # ps_set = []
   ps_rs_dict = {}
   for ps in ps_set:
     try:
       sp_set = StudentProblemSet.objects.get(problem_set=ps, user=request.user.reedie)
-      ps_rs_dict[ps] = sp_set
+      #don't show completed problem sets
+      if not sp_set.all_submitted():
+        ps_rs_dict[ps] = sp_set
     except StudentProblemSet.DoesNotExist:
       ps_rs_dict[ps] = None
 
