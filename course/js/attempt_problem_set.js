@@ -13,8 +13,8 @@ var submit_checks = function () {
     //check if this file is gonna be renamed and alert the user
     else if (element.getAttribute("force-rename") == "True") {
       var label = $("label[for='"+$(this).attr('id')+"']");
-      if (label.text() != element.value){
-        force_renames += "<p>" + element.value + " will be renamed to " + label.text() + "</p>";
+      if (label.html() != element.value){
+        force_renames += "<p>" + element.value + " will be renamed to " + label.html() + "</p>";
         
       }
     }
