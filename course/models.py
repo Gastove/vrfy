@@ -124,6 +124,10 @@ class ProblemSet(models.Model):
   pub_date = models.DateTimeField('date assigned')
   due_date = models.DateTimeField('date due')
 
+  def cs_sections(self):
+    res = ", ".join([str(section) for section in self.cs_section.all()])
+    return res
+
   def is_already_due(self):
     return self.due_date < timezone.now()
 

@@ -13,15 +13,11 @@ import sys
 sys.path.append("../")
 import vrfy.settings
 from util import tango
+from . import admin_views
 # from django.core import serializers
 
 admin.site.site_header = "Homework Administration"
 admin.site.site_title = "Homework Administration"
-
-@admin.site.register_view('tables/')
-def tables(request):
-  print('you\'re here')
-  pass
 
 #Inlines
 class RequiredProblemFilenameInline(admin.TabularInline):
@@ -127,9 +123,6 @@ class ProblemSetAdmin(admin.ModelAdmin):
   list_display = ('title', 'cs_sections', 'pub_date', 'due_date', 'problems_included', 'submissions')
   list_filter = ('cs_section',)
 
-
-  def cs_sections(self, obj):
-    return ", ".join([str(section) for section in obj.cs_section.all()]) 
  
   def submissions(self, obj):
     student_solutions = obj.studentproblemset_set.all()
