@@ -8,3 +8,4 @@ django-grappelli==2.6.5
 selenium==2.46.0
 Pygments==2.0.2
 django-adminplus==0.3
+django-tables2==1.0.4
